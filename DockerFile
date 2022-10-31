@@ -1,0 +1,18 @@
+# Python 3 base image for docker
+FROM python:3
+
+# working directory for the script
+WORKDIR /usr/src/app
+
+# requirements.txt to install pip dependencies
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+# running script command
+CMD [ "python", "./live_updates.py" ]
+
+
+
+# docker run -it --rm --name live_updates -v "$PWD":/usr/src/app -w /usr/src/app python:3 python live_updates.py
